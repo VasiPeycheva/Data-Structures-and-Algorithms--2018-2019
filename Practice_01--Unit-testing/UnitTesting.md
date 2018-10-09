@@ -1,4 +1,4 @@
--# <center> Упражнение 1 </center>
+# <center> Упражнение 1 </center>
 ## <center> Unit tests </center>
 
 #### Какво представлява unit (компонентно) тестване?
