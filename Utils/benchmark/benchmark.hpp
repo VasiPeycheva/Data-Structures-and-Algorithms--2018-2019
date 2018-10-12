@@ -5,6 +5,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <string>
 
 //a function which receives Functor as a parameter
 //runs it and outputs the microseconds that running took
