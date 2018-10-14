@@ -50,7 +50,7 @@
 
 #### Extreme programming
 - методология, подходяща да се използва при проекти, които имат често променящи се изисквания
--[More information on extreme programming](https://en.wikipedia.org/wiki/Extreme_programming)
+- [More information on extreme programming](https://en.wikipedia.org/wiki/Extreme_programming)
 
 
 
