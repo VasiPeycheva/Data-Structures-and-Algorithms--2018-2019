@@ -66,7 +66,7 @@ void benchmark_test_fnc(Functor f, T_FORMAT format = F_MICRO,
 	case F_MILLI : 	
 		
 		os  <<  duration_cast<milliseconds>(end - begin).count()
-			<< " microseconds" << std::endl;
+			<< " milliseconds" << std::endl;
 		break;
 	
 	case F_SEC : 	
