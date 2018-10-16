@@ -25,51 +25,79 @@ there are three more parameters :
 */
 #include "benchmark.hpp"
 
-void sum_sq_large() {
-	
-	unsigned long long int sum = 1;
-	for(unsigned long long i = 2; i < 10000000; i++)
-		sum += sqrt(i); //sum probably overflows, but not important for the example
+
+
+void fillArr(int arr[],int n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		arr[i] = i;
+	}
 }
 
-class Calc_sum_sq {
-
-public :
-	void operator() () const {
-		
-		unsigned long long int sum = 1;
-		for(unsigned long long i = 2; i < 10000000; i++)
-			sum += sqrt(i); //sum probably overflows, but not important for the example
+bool linearSearch(int arr[], int n, int element)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		if (arr[i] == element)
+			return true;
+		else
+			return false;
 	}
-} calc_obj;
+}
 
+bool binarySearch(int arr[], int n, int element)
+{
+	int beg = 0;
+	int end = n;
+	int middle = (beg + end) / 2;
+
+	while (beg <= end)
+	{
+		if (arr[middle] > element)
+		{
+			end = middle - 1;
+			middle = (beg + end) / 2;
+		}
+		else if (arr[middle] < element)
+		{
+			beg = middle + 1;
+			middle = (beg + end) / 2;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	return false;
+
+}
+
+void linearTest()
+{
+	unsigned n = 90000000;
+	int* arr = new int[n];
+	int searchElement = 1;
+	fillArr(arr, n);
+	linearSearch(arr, n, searchElement);
+	delete[] arr;
+}
+
+void binaryTest()
+{
+	unsigned n = 90000000;
+	int* arr = new int[n];
+	int searchElement = 1;
+	fillArr(arr, n);
+	binarySearch(arr, n, searchElement);
+	delete[] arr;
+}
 
 int main() {
 	
-	std::cout << "Testing with different time formats :" << std::endl;
-	//ordinary function
-	//without function's name
-	//using different time formats
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_MICRO);
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_MILLI);
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_SEC);
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_MIN);
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_ALL);
-	
-	std::cout << "------------------------------------" << std::endl
-			  << "Testing other options :" << std::endl;
-	
-	//with function's name
-	benchmark_test_fnc(sum_sq_large, T_FORMAT::F_MICRO, fnc_name_to_str(sum_sq_large));
-	//object with operator() with custom name
-	benchmark_test_fnc(calc_obj, T_FORMAT::F_MICRO, fnc_name_to_str(calc_obj.operator()));
-	
-	//lambda function
-	benchmark_test_fnc([](){ 
-		unsigned long long int sum = 1;
-		for(unsigned long long i = 2; i < 10000000; i++)
-			sum += sqrt(i); //sum probably overflows, but not important for the example
-	});
+	benchmark_test_fnc(linearTest, T_FORMAT::F_MICRO, fnc_name_to_str(linearTest));
+	benchmark_test_fnc(binaryTest, T_FORMAT::F_MICRO, fnc_name_to_str(binaryTest));
 
 	return 0;
 }
