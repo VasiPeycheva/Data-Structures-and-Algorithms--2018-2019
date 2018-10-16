@@ -12,7 +12,7 @@
 #define fnc_name_to_str(f) #f
 
 //format argument
-enum T_FORMAT {
+enum class T_FORMAT {
 	
 	F_MICRO, // 1000 microseconds = 1 millisecond 
 	F_MILLI, // 1000 milliseconds = 1 second 
@@ -31,7 +31,7 @@ enum T_FORMAT {
 
 
 template<typename Functor>
-void benchmark_test_fnc(Functor f, T_FORMAT format = F_MICRO, 
+void benchmark_test_fnc(Functor f, T_FORMAT format = T_FORMAT::F_MICRO, 
 						const std::string& name = "", std::ostream& os = std::cout) {
 
 //using some dark c++ 11 magic to calculate the time 
@@ -57,31 +57,31 @@ void benchmark_test_fnc(Functor f, T_FORMAT format = F_MICRO,
 	
 	switch (format) {
 		
-	case F_MICRO :
+	case T_FORMAT::F_MICRO :
 	
 		os  <<  duration_cast<microseconds>(end - begin).count()
 			<< " microseconds" << std::endl;
 		break;
 		
-	case F_MILLI : 	
+	case T_FORMAT::F_MILLI : 	
 		
 		os  <<  duration_cast<milliseconds>(end - begin).count()
 			<< " milliseconds" << std::endl;
 		break;
 	
-	case F_SEC : 	
+	case T_FORMAT::F_SEC : 	
 		
 		os  <<  duration_cast<seconds>(end - begin).count()
 			<< " seconds" << std::endl;
 		break;
 		
-	case F_MIN : 	
+	case T_FORMAT::F_MIN : 	
 		
 		os  <<  duration_cast<minutes>(end - begin).count()
 			<< " minutes" << std::endl;
 		break;
 	
-	case F_ALL :
+	case T_FORMAT::F_ALL :
 		
 		microseconds dur = duration_cast<microseconds>(end - begin);
 		
