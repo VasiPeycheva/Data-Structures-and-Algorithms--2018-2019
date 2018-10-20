@@ -1,5 +1,5 @@
-# <center> Упражнение 1 </center>
-## <center> Unit tests </center>
+# <p align='center'> Упражнение 1 </p>
+## <p align='center'> Unit tests </p>
 
 #### Какво представлява unit (компонентно) тестване?
 - Unit - най-малката част от кода, която подлежи на тестване (пример: функция)

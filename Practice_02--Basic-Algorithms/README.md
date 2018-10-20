@@ -1,5 +1,5 @@
-# <center> Упражнение 2 </center>
-## <center> Algorithms </center>
+# <p align='center'> Упражнение 2 </p>
+## <p align='center'> Algorithms </p>
 
 #### Какво е алгоритъм?
 - крайна поредица от инструкции за решаване на даден проблем
