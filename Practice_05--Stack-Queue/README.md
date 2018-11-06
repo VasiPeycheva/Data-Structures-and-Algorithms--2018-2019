@@ -3,7 +3,7 @@
 
 #### Стек
 
-* Идея - First In Last Out;
+* Идея - First In Last Out (FILO same as LIFO - last in first out);
 	* push
 	* pop
 	* peek
@@ -36,7 +36,7 @@
 
 #### Опашка
 
-* Идея - First In First Out;
+* Идея - First In First Out (FIFO);
 	* put/ enqueue
 	* get/ dequeue
 	* peek
