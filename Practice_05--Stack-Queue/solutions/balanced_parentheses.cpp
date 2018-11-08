@@ -55,13 +55,31 @@ bool isCorrect(const string & str) {
 		if (isOpen(str[i])) {
 			openedBrackets.push(str[i]);
 		}
-		else if (match(openedBrackets.top(), str[i])) {
+		else if ((openedBrackets.size() > 0) && match(openedBrackets.top(), str[i])) {
 			openedBrackets.pop();
 		}
-		else {
-			break;
-		}
+		else 
+			return false;
 	}
 	return openedBrackets.empty();
 }
 
+int main()
+{
+	string brackets[] = {"[]","{)","())", "[(])" ,"<()()[()]><{()}>", "[(])<[]>[{{}]}" };
+
+	for (string expression : brackets)
+	{
+		std::cout << "brackets " << expression << " are ";
+		if (isCorrect(expression))
+		{
+			cout << "correct \n";
+		}
+		else
+		{
+			cout << "incorrect \n";
+		}
+	}
+
+	return 0;
+}
