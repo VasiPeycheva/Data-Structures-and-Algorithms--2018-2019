@@ -108,7 +108,7 @@ void print_list(linked_list* const context) {
 }
 
 // the real task solving function
-void devide_list(linked_list* list) {
+void divide_list(linked_list* list) {
 	
 	// creating two new empty lists, with memory O(1) -> just four pointers
 	linked_list odds = {.front_ptr = NULL, .back_ptr = NULL };
@@ -150,7 +150,7 @@ void test_only_even() {
 	printf("input : ");
 	print_list(&ll);
 	
-	devide_list(&ll);
+	divide_list(&ll);
 	printf("output : ");
 	print_list(&ll);
 	
@@ -174,7 +174,7 @@ void test_only_odd() {
 	printf("input : ");
 	print_list(&ll);
 	
-	devide_list(&ll);
+	divide_list(&ll);
 	printf("output : ");
 	print_list(&ll);
 	
@@ -193,7 +193,7 @@ void test_random() {
 	printf("input : ");
 	print_list(&ll);
 	
-	devide_list(&ll);
+	divide_list(&ll);
 	printf("out : ");
 	print_list(&ll);
 	
@@ -215,8 +215,3 @@ int main() {
 	
 	return 0;
 }
-
-
-
-
-
