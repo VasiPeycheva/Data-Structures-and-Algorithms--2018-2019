@@ -28,7 +28,7 @@ bool is_empty(const linked_list& context) {
 			(context.front_ptr == nullptr);
 }
 
-// creates a new node, containing 'data', in front of a list
+// connects an existing box 'n' at the end of a list 'context'
 void list_push_back_node(linked_list& context, node* n) {
 	
 	if(is_empty(context)) {
@@ -42,7 +42,7 @@ void list_push_back_node(linked_list& context, node* n) {
 	context.back_ptr = n;
 }
 
-// creates a new node, containing 'data', in front of a list
+// creates a new node, containing 'data', at the end of a list
 void list_push_front(linked_list& context, int d) {
 	
 	if(is_empty(context)) {
@@ -101,7 +101,7 @@ void print_list(const linked_list& context) {
 }
 
 // the real task solving function
-void devide_list(linked_list& list) {
+void divide_list(linked_list& list) {
 	//creating two new empty lists, with memory O(1) -> just four pointers
 	linked_list odds, evens;
 	// for each element of the list -> O(n), where n is the size of the given list
@@ -138,7 +138,7 @@ void test_only_even() {
 	std::cout << "input : ";
 	print_list(ll);
 	
-	devide_list(ll);
+	divide_list(ll);
 	std::cout << "output : ";
 	print_list(ll);
 	
@@ -161,7 +161,7 @@ void test_only_odd() {
 	std::cout << "input : ";
 	print_list(ll);
 	
-	devide_list(ll);
+	divide_list(ll);
 	std::cout << "output : ";
 	print_list(ll);
 	
@@ -180,7 +180,7 @@ void test_random() {
 	std::cout << "input : ";
 	print_list(ll);
 	
-	devide_list(ll);
+	divide_list(ll);
 	std::cout << "output : ";
 	print_list(ll);
 	
