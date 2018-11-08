@@ -50,3 +50,9 @@ void stackToQueue()
 		}
 	}
 }
+
+
+int main()
+{
+	stackToQueue();
+}
