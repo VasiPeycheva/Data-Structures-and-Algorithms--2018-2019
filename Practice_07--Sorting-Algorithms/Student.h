@@ -29,10 +29,10 @@ struct Student
 
 		getline(in, data.name, ',');
 		getline(in, age, ',');
-		data.age = atoi(age.c_str());
+		data.age = stoi(age);
 		getline(in, data.subject, ',');
 		getline(in, grade, ',');
-		data.grade = atoi(grade.c_str());
+		data.grade = stoi(grade);
 		getline(in, data.date, '\n');
 		return in;
 	}
