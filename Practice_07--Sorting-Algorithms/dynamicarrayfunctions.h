@@ -1,6 +1,7 @@
-#include "DynamicArray.h"
 #ifndef __DYNAMIC__ARRAY__FUNCTIONS__
 #define __DYNAMIC__ARRAY__FUNCTIONS__
+
+#include "DynamicArray.h"
 
 static const int resizeWith = 16;
 
@@ -127,16 +128,16 @@ template <class TYPE>
 inline const TYPE& DynamicArray<TYPE>::operator[](int index) const
 {
 	if (index >= size || index < 0)
-		return 0;
+		throw std::out_of_range("invalid index");
 
-	return arr[index];
+	return data[index];
 }
 
 template <class TYPE>
 inline TYPE& DynamicArray<TYPE>::operator[](int index)
 {
 	if (index >= size || index < 0)
-		throw "invalid index";
+		throw std::out_of_range("invalid index");
 
 	return data[index];
 }
