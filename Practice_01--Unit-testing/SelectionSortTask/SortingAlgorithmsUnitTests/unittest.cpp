@@ -12,7 +12,7 @@ namespace UnitTest
 
 		TEST_METHOD(BasicTest)
 		{
-			int expected[] = { 1,1,2,2,2,4,4,4,5,6,9,22,4 };
+			int expected[] = { 1,1,2,2,2,4,4,4,5,6,9,22,34 };
 			int arr[] = { 9,1,2,34,4,4,2,1,5,2,6,22,4 };
 			int size = sizeof(arr) / sizeof(int);
 			selectionSort(arr, size);
