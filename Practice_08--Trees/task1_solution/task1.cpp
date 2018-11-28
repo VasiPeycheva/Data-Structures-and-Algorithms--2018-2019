@@ -79,6 +79,7 @@ void simpleTest(char * fileName) {
 	printSortedDesc(root);
 	std::cout << "\n\n";
 	clean(root);
+	in.close();
 }
 
 int main() {
