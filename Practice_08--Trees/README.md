@@ -61,7 +61,7 @@
 	 
 input fortmat:
 
-tree: (root{child-list}), where
+tree: (root{child-list}), where</br>
 child-list: {} or trees
 
 positive examples (isomorphic ones):
@@ -102,4 +102,4 @@ Negative examples (non - isomorphic, but close to isomorphic):
 
   (1{(2{(14{(15{})})(13{})})(3{(5{(9{})(11{})})(6{(10{})(12{})})(4{(7{})(8{})})})})
 
-4. Условеито можете да намерите тук.
+4. Условието можете да намерите [тук](https://github.com/VasiPeycheva/Data-Structures-and-Algorithms--2018-2019/blob/master/Practice_08--Trees/solutions/task4_solution/task.pdf).
