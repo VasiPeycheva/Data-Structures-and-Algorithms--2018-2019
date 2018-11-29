@@ -82,26 +82,17 @@ void clean(node * root) {
 	delete root;
 }
 
-void getSubTreeRec(node * root, int n, int& result) {
-	if (root) {
-		if (root->subNodes == n) {
-			result++;
-			return;
+int getSubTreeRec(node * root, int n) {
+		if (root == nullptr || root->subNodes < n) {
+			return 0;
 		}
-		else if (root->subNodes > n) {
-			getSubTreeRec(root->left,n,result);
-			getSubTreeRec(root->right, n, result);
+		else if (root->subNodes == n) {
+			return 1;
 		}
-		else {
-			return;
+		else {  // root->subNodes > n
+			return (getSubTreeRec(root->left,n) +
+				   getSubTreeRec(root->right, n));
 		}
-	}
-}
-
-int getSubTree(node* root, int n) {
-	int result = 0;
-	getSubTreeRec(root, n,result);
-	return result;
 }
 
 void simpleTest() {
