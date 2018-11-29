@@ -83,16 +83,16 @@ void clean(node * root) {
 }
 
 int getSubTreeRec(node * root, int n) {
-		if (root == nullptr || root->subNodes < n) {
-			return 0;
-		}
-		else if (root->subNodes == n) {
-			return 1;
-		}
-		else {  // root->subNodes > n
-			return (getSubTreeRec(root->left,n) +
-				   getSubTreeRec(root->right, n));
-		}
+	if (root == nullptr || root->subNodes < n) {
+		return 0;
+	}
+	else if (root->subNodes == n) {
+		return 1;
+	}
+	else {  // root->subNodes > n
+		return (getSubTreeRec(root->left,n) +
+			   getSubTreeRec(root->right, n));
+	}
 }
 
 void simpleTest() {
