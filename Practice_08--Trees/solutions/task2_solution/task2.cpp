@@ -39,7 +39,7 @@ void insert_helper(node*& root, int element) {
 		root->subNodes++;
 		insert_helper(root->right, element);
 	}
-	if(root->key > element) {
+	else { //(root->key > element)
 		root->subNodes++;
 		insert_helper(root->left, element);
 	}
