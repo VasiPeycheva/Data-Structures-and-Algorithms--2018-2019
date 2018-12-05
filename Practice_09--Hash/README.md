@@ -48,8 +48,11 @@ VIP are TOP
 They are TOP
 
 most common word: "are" // 3 times
+
 with most common left word: "VIP" // 2 times
+
 with most common right word: "TOP"
+
 
 so .. the result is "VIP are TOP"
 
