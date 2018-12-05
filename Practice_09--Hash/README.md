@@ -42,18 +42,19 @@
 ##### Задача
 
 Напишете програма, която по въведен текстов файл, изкарва най-често срещаната дума, както и думите, които най-често се срещат отдясно и отляво на дадената дума.
+
 Пример:
-VIP are Vasi Ivan and Paco
-VIP are TOP
-They are TOP
 
-most common word: "are" // 3 times
+VIP are Vasi Ivan and Paco </br>
+VIP are TOP </br>
+They are TOP </br>
 
-with most common left word: "VIP" // 2 times
 
-with most common right word: "TOP"
+* most common word: "are" // 3 times
+* with most common left word: "VIP" // 2 times
+* with most common right word: "TOP" // 2 times
 
 
 so .. the result is "VIP are TOP"
 
-!NB! Текстовият файл съдържа думи, разделени с whitespace
+**!NB! Текстовият файл съдържа думи, разделени с whitespace**
