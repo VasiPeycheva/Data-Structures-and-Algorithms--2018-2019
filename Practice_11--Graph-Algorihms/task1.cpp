@@ -1,50 +1,50 @@
 /*
-*
-* Author : Vasilena Peycheva
+ * Solution to the first task - shortest paths in graph,
+ * using a simplified version of Dijkstra's algorithm.
+ * Author: Vasilena Peycheva, co-author: Ivan Filipov
 */
 
+#include <iostream> // std::cout
+#include <vector>   // std::vector
+#include <limits>   // std::numeric_limits
+#include <utility>  // std::pair
 
-#include <iostream>
-#include <vector>
-
+// import some names
 using std::vector;
 using std::pair;
 using std::make_pair;
-
-typedef vector<vector<pair<int, int>>> adj_list;
-
+// each edge is a pair: [ to vertex with weight ]
+using edge = pair<int, int>; 
+// the graph is represented as adjacency lists 
+using graph = vector<vector<edge>>;
+// mark for unknown distance
 const unsigned int MAX_DISTANCE = std::numeric_limits<int>::max();
 
-void addEdge(adj_list& list, int i, int j, int w) {
-	list[i].push_back(make_pair(j, w));
-	list[j].push_back(make_pair(i, w));
+/// add a new edge into graph @adjLists
+/// from vertex @i to vertex @j, with weight @w
+/// and because the graph is undirected, add the opposite edge also.
+void addEdge(graph& adjLists, int i, int j, int w) {
+	
+	adjLists[i].push_back(make_pair(j, w));
+	adjLists[j].push_back(make_pair(i, w));
 }
 
-void printList(const adj_list& list) {
-	for (int i = 1; i < list.size(); i++) {
+/// simply outputs the @adjLists graph's contain
+void printGraph(const graph& adjLists) {
+	
+	for (size_t i = 1; i < adjLists.size(); i++) {
 		std::cout << "vertex [" << i << "] has successors : { ";
-		for (pair<int,int> v : list[i]) {
-			std::cout << "(" << v.first << ',' << v.second << "), ";
+		for (const edge& e : adjLists[i]) {
+			std::cout << "(" << e.first << ',' << e.second << "), ";
 		}
-		std::cout << " } \n";
+		std::cout << " }\n";
 	}
 }
 
-void initDistVector(vector<int>& distance) {
-	for (size_t i = 0; i < distance.size(); i++)
-	{
-		distance[i] = MAX_DISTANCE;
-	}
-}
-
-void initFinishedVector(vector<bool>&finished) {
-	for (size_t i = 0; i < finished.size(); i++)
-	{
-		finished[i] = false;
-	}
-}
-
-int getNextVertex(vector<int>& distance, vector<bool> & visited) {
+/// get the index of the closed unvisited vertex, depending on
+/// known distances @distance and already visited vertices - @visited
+int getNextVertex(const vector<int>& distance, const vector<bool>& visited) {
+	
 	int currentMin = MAX_DISTANCE;
 	int currentMinIndex = -1;
 	for (size_t i = 0; i < distance.size(); i++)
@@ -57,50 +57,66 @@ int getNextVertex(vector<int>& distance, vector<bool> & visited) {
 	return currentMinIndex;
 }
 
-vector<int> path(const adj_list & list, int start) {
-	int n = list.size();
-	vector<bool> finished(n);
-	initFinishedVector(finished);
-	vector<int> distance(n);
-	initDistVector(distance);
+/// solving the task in graph @adjLists from starting vertex with index @start
+/// @retval - a vector with distances to all other vertices
+vector<int> path(const graph& adjLists, int start) {
+	
+	int n = adjLists.size();
+	// mark all vertices as non-visited
+	vector<bool> finished(n, false);
+	// create vector with N cells, each of it with value MAX_DISTANCE
+	vector<int> distance(n, MAX_DISTANCE);
+	// mark the starting vertex
 	distance[start] = 0;
+	// get the closest
 	int current = getNextVertex(distance, finished);
+	// until we have a closest unvisited
 	while (current != -1) {
-		for (size_t i = 0; i < list[current].size(); i++)
+		// optimize distances with it
+		for (size_t i = 0; i < adjLists[current].size(); i++)
 		{
-			int end = list[current][i].first;
-			int weight = list[current][i].second;
+			int end = adjLists[current][i].first;
+			int weight = adjLists[current][i].second;
 			if (distance[end] > (distance[current] + weight))
 			{
 				distance[end] = distance[current] + weight;
 			}
 		}
+		// mark it as done
 		finished[current] = true;
+		// get the next one
 		current = getNextVertex(distance, finished);
 	}
 	return distance;
 }
 
 void testFunc() {
-	adj_list list;
-	list.resize(7);
-	addEdge(list, 1, 2, 1);
-	addEdge(list, 1, 3, 11);
-	addEdge(list, 1, 4, 7);
-	addEdge(list, 1, 6, 33);
-	addEdge(list, 2, 6, 20);
-	addEdge(list, 2, 4, 3);
-	addEdge(list, 3, 5, 4);
-	addEdge(list, 4, 5, 5);
-	addEdge(list, 5, 6, 1);
-
 	
-	printList(list);
-
-	vector<int> result = path(list, 1);
+	/* initialize the graph */
+	graph adjLists;
+	adjLists.resize(7);
+	addEdge(adjLists, 1, 2, 1);
+	addEdge(adjLists, 1, 3, 11);
+	addEdge(adjLists, 1, 4, 7);
+	addEdge(adjLists, 1, 6, 33);
+	addEdge(adjLists, 2, 6, 20);
+	addEdge(adjLists, 2, 4, 3);
+	addEdge(adjLists, 3, 5, 4);
+	addEdge(adjLists, 4, 5, 5);
+	addEdge(adjLists, 5, 6, 1);
+	
+	/*output the stating graph */
+	printGraph(adjLists);
+	
+	/* run the algorithm */
+	int startVertexInd = 1;
+	vector<int> result = path(adjLists, startVertexInd);
+	/*output the result distances */
+	std::cout << "\nstarting from [" << startVertexInd << "]:\n";
 	for (size_t i = 1; i < result.size(); i++)
 	{
-		std::cout << result[i] << '\n';
+		std::cout << "distance to [" << i << "]: " 
+		          << result[i] << '\n';
 	}
 }
 
